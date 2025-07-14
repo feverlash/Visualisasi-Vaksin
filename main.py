@@ -64,6 +64,10 @@ if mode == 'Tampilkan data per grup':
         .transform(lambda x: x.rolling(window, center=True, min_periods=1).mean())
     )
 
+    if hue_col == 'dosis':
+        kategori_valid = ['dosis_1', 'dosis_2', 'dosis_3', 'booster']
+        df_filtered = df_filtered[df_filtered['dosis'].isin(kategori_valid)]
+
     # Tambahkan Overall
     tampilkan_overall = st.checkbox("Tampilkan garis Overall", value=True)
     if tampilkan_overall:
