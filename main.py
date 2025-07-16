@@ -163,7 +163,7 @@ for periode, row in batas_periode.iterrows():
         x=datetime.datetime.strptime(tanggal_awal_covid.strftime("%Y-%m-%d"), "%Y-%m-%d").timestamp() * 1000,
         line=dict(color="red", width=1, dash="dot"),
         layer='above',
-        annotation_text = '2020-03-02',
+        annotation_text = '2020-Mar-02',
         annotation_position="top"
     )
 
@@ -172,7 +172,7 @@ for periode, row in batas_periode.iterrows():
         x=datetime.datetime.strptime(tanggal_akhir_covid.strftime("%Y-%m-%d"), "%Y-%m-%d").timestamp() * 1000,
         line=dict(color="red", width=1, dash="dot"),
         layer='above',
-        annotation_text = '2023-06-21',
+        annotation_text = '2023-Jun-21',
         annotation_position="top"
     )
     if periode in df_overall_for_ratio.index:
@@ -191,9 +191,22 @@ for periode, row in batas_periode.iterrows():
         )
 
 # --- LAYOUT ---
+fig.update_xaxes(
+    showgrid=True,
+    ticks="outside",
+    tickson="boundaries",
+    ticklen=5
+)
+
 fig.update_layout(
     yaxis=dict(range=[0, 115]),
     xaxis_title='Time',
+    xaxis=dict(
+        tickformat="%Y-%b",  # Format sumbu X jadi "YYYY-MM"
+        tickangle=0 ,
+        dtick="M3",
+        
+    ),
     yaxis_title='Timely Vaccination Ratio (%)',
     legend_title=hue_col.title(),
     margin=dict(t=60, b=10, l=10, r=40),
