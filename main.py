@@ -59,7 +59,9 @@ df_overall_for_ratio = (
 
 # === MODE: PER GRUP ===
 if mode == 'Tampilkan data per grup':
-    hue_col = st.selectbox("Pilih kategori pewarnaan garis (hue):", ['kabupaten', 'sex', 'jenis_wilayah', 'dosis'])
+    hue_options = ['kabupaten', 'sex', 'jenis_wilayah', 'dosis', 'periode_covid_Tgl Lahir']
+    hue_col = st.selectbox("Pilih kategori pewarnaan garis (hue):", hue_options)
+
 
     if granularity == 'Week':
         df_filtered = df_filtered.sort_values([hue_col, 'tanggal_awal_minggu']).copy()
